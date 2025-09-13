@@ -1,9 +1,35 @@
-function App() {
-  return (
-    <div>
-      <h1>TEST!!!</h1>
-    </div>
-  );
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./ui/Home";
+import Menu from "./features/menu/Menu";
+import Cart from "./features/cart/Cart";
+import CreateOrder from "./features/order/CreateOrder";
+import Order from "./features/order/Order";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/menu",
+    element: <Menu />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
+  {
+    path: "/order/new",
+    element: <CreateOrder />,
+  },
+  {
+    path: "/order/:orderId",
+    element: <Order />,
+  },
+]);
+
+function App({ children }) {
+  return <RouterProvider router={router}>{children}</RouterProvider>;
 }
 
 export default App;
