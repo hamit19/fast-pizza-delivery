@@ -2,6 +2,7 @@ import { Outlet, useNavigation } from "react-router-dom";
 import Header from "./Header";
 import CartOverView from "../features/cart/CartOverview";
 import Loader from "./Loader";
+import SearchOrder from "../features/order/SearchOrder";
 
 function LayoutApp() {
   const navigation = useNavigation();
