@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <div>
+    <div className='text-rose-500'>
       <Link to='/'>Home</Link>
     </div>
   );
