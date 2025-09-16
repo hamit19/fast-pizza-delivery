@@ -1,11 +1,24 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Header from "./Header";
+import CartOverView from "../features/cart/CartOverview";
+import Loader from "./Loader";
 
 function LayoutApp() {
+  const navigation = useNavigation();
+
+  const isLoading = navigation.state === "loading";
+
   return (
-    <div>
+    <div className='layout'>
+      {isLoading && <Loader />}
+
       <Header />
-      <Outlet />
+
+      <main>
+        <Outlet />
+      </main>
+
+      <CartOverView />
     </div>
   );
 }
