@@ -1,11 +1,18 @@
+import CreateUser from "../features/user/CreateUser";
+
 function Home() {
   return (
-    <div>
-      <h1>
+    <div
+      className={`h-[75vh] flex items-center justify-center text-center flex-col gap-6`}>
+      <h1 className=' text-xl '>
         The best pizza.
         <br />
-        Straight out of the oven, straight to you.
+        <span className='text-yellow-500'>
+          Straight out of the oven, straight to you.
+        </span>
       </h1>
+
+      <CreateUser />
     </div>
   );
 }
