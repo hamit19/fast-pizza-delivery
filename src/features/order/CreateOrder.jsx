@@ -7,6 +7,7 @@ import {
   useNavigation,
 } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
+import Button from "../../ui/Button";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -49,28 +50,29 @@ function CreateOrder() {
       <h2>Ready to order? Let's go!</h2>
 
       <Form method='POST'>
-        <div>
+        <div className='flex flex-col'>
           <label>First Name</label>
-          <input type='text' name='customer' required />
+          <input className='input' type='text' name='customer' required />
         </div>
 
-        <div>
+        <div className='flex flex-col'>
           <label>Phone number</label>
           <div>
-            <input type='tel' name='phone' required />
+            <input className='input' type='tel' name='phone' required />
           </div>
           {errForm?.phone && <span> {errForm.phone}</span>}
         </div>
 
-        <div>
+        <div className='flex flex-col'>
           <label>Address</label>
           <div>
-            <input type='text' name='address' required />
+            <input className='input' type='text' name='address' required />
           </div>
         </div>
 
         <div>
           <input
+            className='check'
             type='checkbox'
             name='priority'
             id='priority'
@@ -82,9 +84,9 @@ function CreateOrder() {
 
         <input type='hidden' name='cart' value={JSON.stringify(cart)} />
         <div>
-          <button disabled={isSubmitting}>
+          <Button disabled={isSubmitting}>
             {isSubmitting ? "Order is placing..." : "Order now"}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
