@@ -1,7 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Button({ children, disabled, to }) {
-  const navigate = useNavigate();
   const className = `bg-yellow-400 disabled:cursor-not-allowed
      px-6 rounded-full py-2 focus:outline-none focus:ring focus:ring-offset-2
     focus:ring-yellow-300 hover:bg-yellow-300 transition-colors duration-300 
