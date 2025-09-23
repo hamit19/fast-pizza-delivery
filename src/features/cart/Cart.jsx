@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import LinkButton from "../../ui/LinkButton";
+import CartItem from "./CartItem";
 import Button from "../../ui/Button";
 
 const fakeCart = [
@@ -30,14 +30,22 @@ function Cart() {
   const cart = fakeCart;
 
   return (
-    <div>
+    <div className='p-4'>
       <LinkButton to='/menu'>&larr; Back to menu </LinkButton>
 
-      <h2>Your cart, %NAME%</h2>
+      <h1 className='md:text-lg lg:text-xl mt-6'>Your Cart, %NAME%</h1>
 
-      <div>
-        <Button to='/order/new'>Order pizzas</Button>
-        <button>Clear cart</button>
+      <ul className='divide-y divide-stone-300 py-4 '>
+        {cart.map((item) => (
+          <CartItem key={item.pizzaId} item={item} />
+        ))}
+      </ul>
+
+      <div className=' flex items-center justify-center md:justify-start gap-4 '>
+        <Button type={"primary"} to='/order/new'>
+          Order pizzas
+        </Button>
+        <Button type={"secondary"}>Clear cart</Button>
       </div>
     </div>
   );
