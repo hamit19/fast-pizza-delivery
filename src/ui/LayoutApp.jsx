@@ -14,8 +14,8 @@ function LayoutApp() {
 
       <Header />
 
-      <div className='max-w-5xl'>
-        <main className='overflow-auto'>
+      <div className='max-w-5xl md:mx-auto pt-8 '>
+        <main className='overflow-auto  '>
           <Outlet />
         </main>
       </div>
