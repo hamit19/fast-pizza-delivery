@@ -17,12 +17,14 @@ function CreateUser() {
         placeholder='Your full name'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className='w-72 mt-4 mb-6 px-4 py-2 rounded-full'
+        className='w-72 mt-4  mb-10 px-4 py-2 rounded-full input'
       />
 
       {username !== "" && (
         <div>
-          <Button to='/menu'>Start ordering</Button>
+          <Button type={"primary"} to='/menu'>
+            Start ordering
+          </Button>
         </div>
       )}
     </form>
