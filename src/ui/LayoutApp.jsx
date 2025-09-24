@@ -15,7 +15,7 @@ function LayoutApp() {
       <Header />
 
       <div className='pt-8 '>
-        <main className='max-w-7xl md:mx-auto  '>
+        <main className='max-w-3xl md:mx-auto  '>
           <Outlet />
         </main>
       </div>

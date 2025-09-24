@@ -46,33 +46,43 @@ function CreateOrder() {
   const isSubmitting = useNavigation().state === "submitting";
 
   return (
-    <div>
-      <h2>Ready to order? Let's go!</h2>
+    <div className='py-4 px-8'>
+      <h2 className=' font-medium mb-2'>Ready to order? Let's go!</h2>
 
-      <Form method='POST'>
-        <div className='flex flex-col'>
-          <label>First Name</label>
-          <input className='input' type='text' name='customer' required />
+      <Form className='space-y-3' method='POST'>
+        <div className='flex text-stone-500  sm:justify-center sm:items-center flex-col gap-2 text-sm sm:flex-row'>
+          <label className='sm:basis-40'>First Name</label>
+          <input className='input grow ' type='text' name='customer' required />
         </div>
 
-        <div className='flex flex-col'>
-          <label>Phone number</label>
-          <div>
-            <input className='input' type='tel' name='phone' required />
-          </div>
-          {errForm?.phone && <span> {errForm.phone}</span>}
-        </div>
-
-        <div className='flex flex-col'>
-          <label>Address</label>
-          <div>
-            <input className='input' type='text' name='address' required />
+        <div className='flex sm:justify-center sm:items-center sm:flex-row text-stone-500 flex-col gap-2 text-sm '>
+          <label className='sm:basis-40'>Phone number</label>
+          <div className='grow flex flex-col gap-2'>
+            <input className='input w-full ' type='tel' name='phone' required />
+            {errForm?.phone && (
+              <span className='text-red-700 bg-red-100 p-2 text-xs rounded-lg'>
+                {" "}
+                {errForm.phone}
+              </span>
+            )}
           </div>
         </div>
 
-        <div>
+        <div className='flex sm:justify-center sm:items-center sm:flex-row text-stone-500 flex-col gap-2 text-sm'>
+          <label className='sm:basis-40'>Address</label>
+          <div className='grow'>
+            <input
+              className='input w-full '
+              type='text'
+              name='address'
+              required
+            />
+          </div>
+        </div>
+
+        <div className='flex items-center gap-2 font-medium text-sm '>
           <input
-            className='check'
+            className='check checked:ring checked:ring-yellow-300 checked:ring-offset-1 rounded-full checked:bg-yellow-400 checked:accent-yellow-300'
             type='checkbox'
             name='priority'
             id='priority'
@@ -83,7 +93,7 @@ function CreateOrder() {
         </div>
 
         <input type='hidden' name='cart' value={JSON.stringify(cart)} />
-        <div>
+        <div className='text-xs font-bold sm:text-balance'>
           <Button type={"primary"} disabled={isSubmitting}>
             {isSubmitting ? "Order is placing..." : "Order now"}
           </Button>
