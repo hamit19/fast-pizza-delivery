@@ -8,6 +8,7 @@ import {
   formatDate,
 } from "../../utils/helpers";
 
+import OrderItem from "./OrderItem";
 // const order = {
 //   id: "ABCDEF",
 //   customer: "Jonas",
@@ -61,32 +62,58 @@ function Order() {
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
-    <div>
-      <div>
-        <h2>Status</h2>
+    <div className='py-6 px-4 space-y-8 '>
+      <div className='flex flex-col sm:flex-row gap-4 justify-between items-center'>
+        <h2 className=' text-lg capitalize '> order #{id} Status</h2>
 
-        <div>
-          {priority && <span>Priority</span>}
-          <span>{status} order</span>
+        <div className='space-x-2 uppercase '>
+          {priority && (
+            <span className='bg-red-500 text-red-50 rounded-full px-2 py-1'>
+              Priority
+            </span>
+          )}
+          <span className='bg-green-500 text-green-50 rounded-full px-2 py-1'>
+            {status} order
+          </span>
         </div>
       </div>
-      <div>
-        <p>
+
+      <div className='bg-stone-200 px-6 py-5 rounded-md flex flex-col gap-2 sm:flex-row justify-between items-center'>
+        <p className='text-stone-600'>
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
             : "Order should have arrived"}
         </p>
-        <p>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
+        <p className='text-stone-400 text-sm '>
+          (Estimated delivery: {formatDate(estimatedDelivery)})
+        </p>
       </div>
-      <div>
-        <p>Price pizza: {formatCurrency(orderPrice)}</p>
-        {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
-        <p>To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
+
+      <ul className='divide-y divide-stone-200 border-t border-b '>
+        {cart.map((item) => (
+          <OrderItem key={item.key} item={item} />
+        ))}
+      </ul>
+
+      <div className='bg-stone-200 px-6 py-5 space-y-2 rounded-md '>
+        <p className='text-stone-600 text-sm font-medium '>
+          Price pizza: {formatCurrency(orderPrice)}
+        </p>
+
+        {priority && (
+          <p className='text-stone-600 text-sm font-medium'>
+            Price priority: {formatCurrency(priorityPrice)}
+          </p>
+        )}
+
+        <p className='font-bold'>
+          To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
+        </p>
       </div>
     </div>
   );
 }
- 
+
 export const loader = async function ({ params }) {
   const order = await getOrder(params.orderId);
   return order;
